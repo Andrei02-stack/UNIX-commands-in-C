@@ -1,0 +1,45 @@
+mallocFile si mallocDir : functii auxiliare implementate pentru alocarea memoriei unui fisier respectiv director si le returneaza . 
+
+touch  : - am folosit un for pentru a ma plimba prin fisierele directorului parinte, am comparat numele acestora cu cel dat la input
+           si in cazul in care era acelasi am printat mesajul specific ("File already exists\n") ;
+         - mai departe am creat un fisier nou folosind functia auxiliara mallocFile, apoi am luat cazul de baza in care daca fisierul 
+           parinte este NULL, atunci acesta devine noul fisier ;
+         - pentru a crea mai departe fisiere am folosit un for ca si mai sus, verificand de aceasta data daca urmatorul fisier e NULL, 
+           acesta desigur devine noul fisier creat .
+
+mkdir : - asemeni functiei "touch" am folosit un for pentru a ma plimba prin directoarele directorului parinte am comparat numele acestora 
+          cu cel dat la input si in cazul in care era acelasi am printat mesajul specific ("Directory already exists\n") ;
+        - mai departe bazandu-ma in continuare pe codul scris la functia "touch" ,rezolvarea si explicatiile sunt foarte similare, doar ca 
+          de aceasta data am lucrat evident cu directoare ,nu cu fisiere .
+
+ls : - am folosit 2 for-uri cu ajutorul carora ma plimb prin directoarele si fisierele directorului parinte si afisez numele acestora, 
+       mai intai al directoarelor si apoi al fisierelor .
+
+rm : - am initializat o variabila found (pentru cand este gasit un fisier) cu valoarea 0, aceasta modificandu-se in 1 atunci cand numele 
+       fisierului corespunde cu numele dat de la input ;
+     - in cazul in care nu a fost gasit fisierul respectiv se va afisa mesajul ("Could not find the file\n") ;
+     - in caz contrar programul trece mai departe si pentru fiecare fisier dat din input se elibereaza memoria si numele respectiv . 
+
+rmdir : - pe principiul functiei "rm" , prima data e cautat folderul care trebuie sters, daca nu e gasit, se afiseaza mesajul corespunzator
+          situatiei ("Could not find the dir\n") , daca acesta e gasit se sterg fisierele din componenta sa, apoi este sters directorul in
+          sine, respectiv directoarele "copil" si fisierele din cadrul lor .
+
+cd : - ca si mai inainte este cautat directorul, iar daca nu este gasit se afiseaza mesajul ("No directories found!\n") ;
+     - daca acesta este gasit, in schimb, in urmatorul for creat, target va pointa catre directorul "copil" al directorului curent ;
+
+pwd : - am copiat la variabila curent simbolul "/", am concatenat numele directorului introdus din input, apoi am concatenat la curent ce aveam 
+        salvat in cale (la primul e goala), iar in final am copiat la cale ce se afla in curent ;
+      - la iesirea din for eliberez memoria alocata pentru curent si dau return la cale, ceea ce ne interesa ;
+
+tree : - am folosit 2 for-uri ,unul care itereaza prin directoare si altul prin fisiere ;
+       - in cazul directoarelor afiseaza numele si trece la nivelul urmator dupa fiecare iteratie ;
+       - in cazul fisierelor este afisat numele;
+
+removeDirList si removeDir : - 2 functii auxiliare pe care le-am implementat pentru eliberarea memoriei alocate in main pentru root
+                               acestea iterand prin toata lista de directoare si da free tuturor directoarelor si fisierelor componente ;
+
+main : - am alocat memorie si numele "home" directorului root ;
+       - folosind fgets() am trecut prin toate functiile implementate pentru a testa functionalitatea ;
+       - in final am utilizat ,cum spuneam mai sus, functia removeDir pentru a elibera toata memoria alocata pentru root si am eliberat 
+         totodata memoria alocata pentru linia in care se scriau comenzile .
+
